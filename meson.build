@@ -1,7 +1,7 @@
-project ('PAV_P2', 'C')
+project ('Practica 2 de PAV', 'c')
 
-exe= 'vad'
-src= ['src/main_vad.c', 'src/vad.c']
-lib= ['-lm', '-lsndfile']
+exe = 'vad'
+src = ['src/main_vad.c', 'src/vad.c']
+lib = ['-lm', '-lsndfile']
 
 executable(exe, sources:src, link_args:lib)
