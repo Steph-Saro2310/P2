@@ -39,12 +39,13 @@ float compute_am(const float *x, unsigned int N) {
 }
 
 float compute_zcr(const float *x, unsigned int N, float fm) {
-    unsigned int zcr = 1e-12;
+    unsigned int zcr = 0; // Inicializar el contador de cruces de cero a 0
     
     for (unsigned int n = 1; n < N; n++) {
-        if ((x[n] > 0 && x[n-1] < 0) || (x[n] < 0 && x[n-1] > 0)) {
+        if ((x[n] > 0 && x[n - 1] < 0) || (x[n] < 0 && x[n - 1] > 0)) {
             zcr++;
         }
     }
-    return (fm/2)*(zcr/N-1);
+    
+    return (float)zcr * fm/ (2*(N - 1)); // Normalización estándar para calcular ZCR
 }
