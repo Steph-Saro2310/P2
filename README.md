@@ -136,30 +136,49 @@ Ejercicios
   continuación, una captura de `wavesurfer` en la que se vea con claridad la señal temporal, el contorno de
   potencia y la tasa de cruces por cero, junto con el etiquetado manual de los segmentos.
 
+![alt text](image.png)
 
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
 	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
 	  estar seguros de que un segmento de señal se corresponde con voz.
 
+	  Al utilizar WaveSurfer, podemos visualizar la señal junto con su potencia en dB. En los tramos de voz, la potencia se encuentra alrededor de 40 dB por encima del nivel de silencio inicial, que se sitúa en torno a los 20 dB.
+
 	* Duración mínima razonable de los segmentos de voz y silencio.
 
+	El tiempo mínimo de un segmento de voz debe ser al menos similar al de una palabra monosílaba pronunciada de manera normal en español. En cuanto al silencio, debe ser suficientemente largo para ser percibido como tal, es decir, debe superar el tiempo de reacción auditiva humana. Ambas duraciones se encuentran cerca de los 200 ms, un valor que se puede verificar midiendo los tiempos de las tramas de voz y silencio, y por lo tanto, lo usaremos como umbral.
+
 	* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
+
+	Al examinar la gráfica de cruces por cero, vemos que los picos en esta tasa suelen coincidir con los periodos de silencio. Esto se debe al ruido de fondo, que tiene fluctuaciones aleatorias y genera más cruces por cero. Sin embargo, no se consigue una separación perfecta, ya que también hay tramos de voz con una cantidad considerable de cruces, causados por sonidos fricativos (como "s"), ruidos de fondo o interferencias varias.
+
+
 
 
 ### Desarrollo del detector de actividad vocal
 
+![alt text](image-1.png)
+
 - Complete el código de los ficheros de la práctica para implementar un detector de actividad vocal en
   tiempo real tan exacto como sea posible. Tome como objetivo la maximización de la puntuación-F `TOTAL`.
+
+Una vez implementado el código, se evaluó su desempeño mediante el uso del script vad_evaluation.pl, el cual calcula dos métricas fundamentales para medir la efectividad del sistema: Recall y Precision. El Recall nos indica qué porcentaje de las muestras realmente relevantes fueron identificadas correctamente por el algoritmo, y se obtiene con la fórmula TP / (TP + FN). En contraste, Precision mide la proporción de las muestras detectadas como positivas que realmente representan actividad vocal, es decir, TP / (TP + FP). Para obtener una visión global del rendimiento, se calcula el F-score, que es la media armónica de Recall y Precision. Este valor nos da una medida conjunta de la capacidad del algoritmo para detectar correctamente la voz sin generar demasiados falsos positivos. En nuestro caso, el F-score alcanzado fue de 96,381%, lo que demuestra una excelente precisión y capacidad de detección de la actividad vocal.
+
 
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
   automática conseguida para el fichero grabado al efecto. 
 
+  ![alt text](image-2.png)
+
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
+
+En términos generales la identificación de los segmentos es muy parecida excepto en algunos tramos puntuales de corta duración. Las discrepancias mas significativas son pequeños segmentos detectados como voz que hemos marcado como silencio a mano. Por lo tanto lo que tenemos son falsos positivos, esto se ve reflejado al tener un Recall de la voz mas alto que Precision.
 
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
+  
 
 
 ### Trabajos de ampliación
@@ -169,6 +188,8 @@ Ejercicios
 - Si ha desarrollado el algoritmo para la cancelación de los segmentos de silencio, inserte una gráfica en
   la que se vea con claridad la señal antes y después de la cancelación (puede que `wavesurfer` no sea la
   mejor opción para esto, ya que no es capaz de visualizar varias señales al mismo tiempo).
+
+  ![alt text](image4.png)
 
 #### Gestión de las opciones del programa usando `docopt_c`
 

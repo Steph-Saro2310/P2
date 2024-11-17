@@ -10,6 +10,8 @@ set -o pipefail
 # scripts/run_vad.sh 5.5 pa llamar en terminal :P
 alfa1=5
 
+alfa1=${1:-5.1} #assignar predeterminat
+
 # Write here the name and path of your program and database
 DIR_P2=$HOME/PAV/P2
 DB=$DIR_P2/db.v4
