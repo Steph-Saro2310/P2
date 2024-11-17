@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "pav_analysis.h"
+
 #include "vad.h"
 
 const float FRAME_TIME = 10.0F; /* in ms. */
@@ -42,7 +43,7 @@ Features compute_features(const float *x, int N) {
    * For the moment, compute random value between 0 and 1 
    */
   Features feat;
-  feat.p = compute_power(x,N);
+  feat.p = compute_power(x, N);
   return feat;
 }
 
@@ -90,7 +91,7 @@ VAD_STATE vad(VAD_DATA *vad_data, float *x, float alfa1) {
   switch (vad_data->state) {
   case ST_INIT:
     vad_data->state = ST_SILENCE;
-    vad_data->p1=f.p + alfa1;
+    vad_data->p1 = f.p + alfa1;
     break;
 
   case ST_SILENCE:
@@ -100,7 +101,7 @@ VAD_STATE vad(VAD_DATA *vad_data, float *x, float alfa1) {
     break;
 
   case ST_VOICE:
-    if (f.p < vad_data->p1){
+    if (f.p <  vad_data->p1) {
       vad_data->state = ST_SILENCE;
     }
     break;

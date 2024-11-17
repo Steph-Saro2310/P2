@@ -136,18 +136,29 @@ Ejercicios
   continuación, una captura de `wavesurfer` en la que se vea con claridad la señal temporal, el contorno de
   potencia y la tasa de cruces por cero, junto con el etiquetado manual de los segmentos.
 
+![alt text](image.png)
 
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
 	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
 	  estar seguros de que un segmento de señal se corresponde con voz.
 
+	  Al utilizar WaveSurfer, podemos visualizar la señal junto con su potencia en dB. En los tramos de voz, la potencia se encuentra alrededor de 40 dB por encima del nivel de silencio inicial, que se sitúa en torno a los 20 dB.
+
 	* Duración mínima razonable de los segmentos de voz y silencio.
+
+	El tiempo mínimo de un segmento de voz debe ser al menos similar al de una palabra monosílaba pronunciada de manera normal en español. En cuanto al silencio, debe ser suficientemente largo para ser percibido como tal, es decir, debe superar el tiempo de reacción auditiva humana. Ambas duraciones se encuentran cerca de los 200 ms, un valor que se puede verificar midiendo los tiempos de las tramas de voz y silencio, y por lo tanto, lo usaremos como umbral.
 
 	* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
 
+	Al examinar la gráfica de cruces por cero, vemos que los picos en esta tasa suelen coincidir con los periodos de silencio. Esto se debe al ruido de fondo, que tiene fluctuaciones aleatorias y genera más cruces por cero. Sin embargo, no se consigue una separación perfecta, ya que también hay tramos de voz con una cantidad considerable de cruces, causados por sonidos fricativos (como "s"), ruidos de fondo o interferencias varias.
+
+
+
 
 ### Desarrollo del detector de actividad vocal
+
+![alt text](image-1.png)
 
 - Complete el código de los ficheros de la práctica para implementar un detector de actividad vocal en
   tiempo real tan exacto como sea posible. Tome como objetivo la maximización de la puntuación-F `TOTAL`.
@@ -160,6 +171,7 @@ Ejercicios
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
+  
 
 
 ### Trabajos de ampliación
