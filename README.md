@@ -189,7 +189,7 @@ En términos generales la identificación de los segmentos es muy parecida excep
   la que se vea con claridad la señal antes y después de la cancelación (puede que `wavesurfer` no sea la
   mejor opción para esto, ya que no es capaz de visualizar varias señales al mismo tiempo).
 
-  ![alt text](image4.png)
+  ![alt text](Image4.png)
 
 #### Gestión de las opciones del programa usando `docopt_c`
 
