@@ -163,10 +163,17 @@ Ejercicios
 - Complete el código de los ficheros de la práctica para implementar un detector de actividad vocal en
   tiempo real tan exacto como sea posible. Tome como objetivo la maximización de la puntuación-F `TOTAL`.
 
+Una vez implementado el código, se evaluó su desempeño mediante el uso del script vad_evaluation.pl, el cual calcula dos métricas fundamentales para medir la efectividad del sistema: Recall y Precision. El Recall nos indica qué porcentaje de las muestras realmente relevantes fueron identificadas correctamente por el algoritmo, y se obtiene con la fórmula TP / (TP + FN). En contraste, Precision mide la proporción de las muestras detectadas como positivas que realmente representan actividad vocal, es decir, TP / (TP + FP). Para obtener una visión global del rendimiento, se calcula el F-score, que es la media armónica de Recall y Precision. Este valor nos da una medida conjunta de la capacidad del algoritmo para detectar correctamente la voz sin generar demasiados falsos positivos. En nuestro caso, el F-score alcanzado fue de 96,381%, lo que demuestra una excelente precisión y capacidad de detección de la actividad vocal.
+
+
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
   automática conseguida para el fichero grabado al efecto. 
 
+  ![alt text](image-2.png)
+
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
+
+En términos generales la identificación de los segmentos es muy parecida excepto en algunos tramos puntuales de corta duración. Las discrepancias mas significativas son pequeños segmentos detectados como voz que hemos marcado como silencio a mano. Por lo tanto lo que tenemos son falsos positivos, esto se ve reflejado al tener un Recall de la voz mas alto que Precision.
 
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo

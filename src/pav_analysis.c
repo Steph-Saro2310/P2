@@ -47,5 +47,5 @@ float compute_zcr(const float *x, unsigned int N, float fm) {
         }
     }
     
-    return zcr*fm/(2*(N-1)); // Normalización estándar para calcular ZCR
+    return (float)zcr * fm/ (2*(N - 1)); // Normalización estándar para calcular ZCR
 }
